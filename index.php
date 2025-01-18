@@ -22,6 +22,7 @@
 				<option value="manualinject">MANUAL INJECT</option>
 				<option value="next">NEXT</option>
 				<option value="update">UPDATE</option>
+				<option value="stop">STOP</option>
 			</select>
 			<label>Value</label>
 			<select name="val[]" multiple>
@@ -172,6 +173,7 @@
     						$('#total').html(parse.bonus);
     						$('#data').prepend('<p>'+parse.value[_iCurWin]+'</p>');
     						refresh = parse.session;
+    						accept = parse.value[_iCurWin];
     					    if (type == "logininject"){
     					        inject();
     					        return;
@@ -191,7 +193,9 @@
     						    $('input[type="submit"]').attr('value', 'START');
     				            $('select[name="type"]').removeAttr("disabled");
     				            $('input[name="user"]').removeAttr("disabled");
-    						    accept = parse.value[_iCurWin];
+							if (type == "stop"){
+								return;
+						    }
     						    update();
     						    return;
     						}
